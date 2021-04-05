@@ -5,11 +5,12 @@ namespace WabLab\Tests\Factory;
 use WabLab\DoublyLinkedList\Contract\IDLNode;
 use WabLab\DoublyLinkedList\DLNode;
 use WabLab\DoublyLinkedList\Helpers\LinkingNodes;
+use WabLab\DoublyLinkedList\Helpers\SettingNodeAfter;
 
 
 class DoublyLinkedListFactory
 {
-    public static function createChain(int $length = 10):IDLNode
+    public static function createChain(int $length = 10, ?IDLNode &$firstNode = null, ?IDLNode &$lastNode = null):IDLNode
     {
         $root = null;
         $prevNode = null;
@@ -20,10 +21,12 @@ class DoublyLinkedListFactory
                 $root = $node;
             }
             if($prevNode) {
-                LinkingNodes::process($prevNode, $node);
+                SettingNodeAfter::process($prevNode, $node);
             }
             $prevNode = $node;
         }
+        $firstNode = $root;
+        $lastNode = $node;
         return $root;
     }
 

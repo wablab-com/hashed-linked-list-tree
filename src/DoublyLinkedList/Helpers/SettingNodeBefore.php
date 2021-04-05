@@ -11,9 +11,12 @@ class SettingNodeBefore
     {
         if($beforeNode !== $nodeToSet) {
             FreeingNode::process($nodeToSet);
-            $nodeToSet->setLeft($beforeNode->getLeft());
+            $connectedNodeLeft = $beforeNode->getLeft();
+            $nodeToSet->setLeft($connectedNodeLeft);
             $nodeToSet->setRight($beforeNode);
             $beforeNode->setLeft($nodeToSet);
+            if($connectedNodeLeft)
+                $connectedNodeLeft->setRight($nodeToSet);
         }
     }
 

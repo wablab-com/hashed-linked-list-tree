@@ -4,7 +4,7 @@ namespace WabLab\HashedTree\Contract;
 
 use Generator;
 
-interface INodeTree
+interface INodeTree extends IHashedNode
 {
     public function setChild(IHashedNode $node);
     public function getChild(string $hash):?IHashedNode;

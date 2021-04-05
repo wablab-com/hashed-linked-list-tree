@@ -11,9 +11,12 @@ class SettingNodeAfter
     {
         if($afterNode !== $nodeToSet) {
             FreeingNode::process($nodeToSet);
+            $connectedNodeRight = $afterNode->getRight();
             $nodeToSet->setLeft($afterNode);
-            $nodeToSet->setRight($afterNode->getRight());
+            $nodeToSet->setRight($connectedNodeRight);
             $afterNode->setRight($nodeToSet);
+            if($connectedNodeRight)
+                $connectedNodeRight->setLeft($nodeToSet);
         }
     }
 

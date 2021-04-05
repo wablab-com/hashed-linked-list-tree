@@ -42,6 +42,7 @@ class NodeTree extends Node implements INodeTree
     {
         if(isset($this->children[$oldHash])) {
             $this->children[$newHash] = $this->children[$oldHash];
+            $this->children[$newHash]->setHash($newHash);
             unset($this->children[$oldHash]);
             return true;
         }
